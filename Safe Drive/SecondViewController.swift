@@ -3,7 +3,7 @@
 //  Safe Drive
 //
 //  Created by Andrew Stratmann on 2/24/17.
-//  Copyright © 2017 ShanStratmann. All rights reserved.
+//  Copyright © 2017 JISS-ISU. All rights reserved.
 //
 
 import UIKit

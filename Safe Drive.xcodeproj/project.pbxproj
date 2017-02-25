@@ -192,7 +192,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = ShanStratmann;
+				ORGANIZATIONNAME = "JISS-ISU";
 				TargetAttributes = {
 					0F70DE3D1E60B1F800C69416 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -422,7 +422,7 @@
 				DEVELOPMENT_TEAM = 7C99G5L454;
 				INFOPLIST_FILE = "Safe Drive/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "msas.Safe-Drive";
+				PRODUCT_BUNDLE_IDENTIFIER = "jiss.Safe-Drive";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -435,7 +435,7 @@
 				DEVELOPMENT_TEAM = 7C99G5L454;
 				INFOPLIST_FILE = "Safe Drive/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "msas.Safe-Drive";
+				PRODUCT_BUNDLE_IDENTIFIER = "jiss.Safe-Drive";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -518,6 +518,7 @@
 				0F70DE6A1E60B1F900C69416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F70DE6B1E60B1F900C69416 /* Build configuration list for PBXNativeTarget "Safe DriveTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +527,7 @@
 				0F70DE6D1E60B1F900C69416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F70DE6E1E60B1F900C69416 /* Build configuration list for PBXNativeTarget "Safe DriveUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +536,7 @@
 				0F70DE701E60B1F900C69416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

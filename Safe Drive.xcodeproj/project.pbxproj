@@ -15,6 +15,7 @@
 		0F70DE4E1E60B1F800C69416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F70DE4C1E60B1F800C69416 /* LaunchScreen.storyboard */; };
 		0F70DE591E60B1F900C69416 /* Safe_DriveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DE581E60B1F900C69416 /* Safe_DriveTests.swift */; };
 		0F70DE641E60B1F900C69416 /* Safe_DriveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DE631E60B1F900C69416 /* Safe_DriveUITests.swift */; };
+		59DDA2B91E616570003E1263 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DDA2B81E616570003E1263 /* TabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		0F70DE5F1E60B1F900C69416 /* Safe DriveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Safe DriveUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F70DE631E60B1F900C69416 /* Safe_DriveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Safe_DriveUITests.swift; sourceTree = "<group>"; };
 		0F70DE651E60B1F900C69416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59DDA2B81E616570003E1263 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				0F70DE4A1E60B1F800C69416 /* Assets.xcassets */,
 				0F70DE4C1E60B1F800C69416 /* LaunchScreen.storyboard */,
 				0F70DE4F1E60B1F800C69416 /* Info.plist */,
+				59DDA2B81E616570003E1263 /* TabViewController.swift */,
 			);
 			path = "Safe Drive";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DDA2B91E616570003E1263 /* TabViewController.swift in Sources */,
 				0F70DE461E60B1F800C69416 /* SecondViewController.swift in Sources */,
 				0F70DE421E60B1F800C69416 /* AppDelegate.swift in Sources */,
 				0F70DE441E60B1F800C69416 /* FirstViewController.swift in Sources */,

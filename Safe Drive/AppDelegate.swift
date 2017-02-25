@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import CoreFoundation
+import NotificationCenter
 
 
 @UIApplicationMain
@@ -20,6 +22,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     
     var testTimer : Timer? = nil;
+    
+    var screenIsLocked = false;
+    
+    
+
+    /*
+    //function to be called when the display status of the phone changes
+    func displayStatusChanged(center : CFNotificationCenter, observer : Void, name : CFString,
+                              object : Void, userInfo : CFDictionary){
+        
+        var nameCFString = name;
+        var lockState = nameCFString as NSString;
+        
+        print(nameCFString);
+        
+        if(lockState.isEqual("com.apple.springboard.lockcomplete")){
+            //phone has just been locked
+            print("Device Locked");
+            screenIsLocked = true;
+        }
+        else{
+            print("Device Unlocked");
+            screenIsLocked = false;
+        }
+        
+    }*/
+    
+    
+    let displayStatusChanged: CFNotificationCallback = { center, observer, name, object, info in
+        //works fine
+        
+        var notName = name?.rawValue;
+        var lockState: CFString = notName! as CFString;
+        
+        var state : NSString = lockState as NSString;
+        if(state.isEqual("com.apple.springboard.lockcomplete")){
+            print("phone locked");
+        }
+        else{
+            print("phone unlocked");
+        }
+        
+        
+    }
+    
     
 
 
@@ -41,10 +88,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         manager.startUpdatingLocation();
         
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
-
+        
+        
+        var eventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
+        
+        CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
+            nil, // observer
+            displayStatusChanged, // callback
+            eventName, // event name
+            nil, // object
+            CFNotificationSuspensionBehavior(rawValue: CFIndex(kCFNotificationDeliverImmediately))!);
+        
+        
         
         
         return true;
+    }
+    
+    func lockListener(statusName : NSString){
+        if(statusName.isEqual("com.apple.springboard.lockcomplete")){
+            print("phone locked");
+            screenIsLocked = true;
+
+        }
+        else{
+            print("phone unlocked");
+            screenIsLocked = false;
+        }
     }
     
     
@@ -83,7 +153,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var currentSpeed = currentLoc?.speed;
         
         //prints the current speed of the phone to the developer console
-        print(currentSpeed!);
+        //print(currentSpeed!);
+        
+        //if(unlocked && speed > threshold)
+        //alert user
         
         
         

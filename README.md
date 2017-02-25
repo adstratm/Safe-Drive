@@ -1,5 +1,6 @@
-JISS-ISU Presents:
+Team: JISS-ISU
 
-Safe Drive
+App Name: Safe Drive
 
-More information coming soon!
+What's it do: It notifies and bugs the shit out of you if you are using your phone while driving. 
+

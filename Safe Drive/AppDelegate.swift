@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     
     
-    //handles the
+    //handles something - we don't know what
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
         //blank
     }
@@ -65,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //this line gets the current location
         manager.startUpdatingLocation();
         
-        print("hello");
         
     }
     
@@ -79,6 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
  
         //TODO
         //get the current location data and perform the check for a high speed
+        
+        var currentLoc = manager.location;
+        var currentSpeed = currentLoc?.speed;
+        
+        //prints the current speed of the phone to the developer console
+        print(currentSpeed!);
+        
+        
         
         
         
@@ -101,6 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
+        //disable the GPS location to use less battery power
         manager.startMonitoringSignificantLocationChanges();
     }
 

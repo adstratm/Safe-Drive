@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     //Add manager for location data
     var manager = CLLocationManager();
+
+    
+    var testTimer : Timer? = nil;
     
 
 
@@ -53,6 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     
     //need a function containing the timer information
+    func timerFired(){
+        
+        //these two lines stop the timer and reset it to zero
+        testTimer?.invalidate();
+        testTimer = nil;
+        
+        //this line gets the current location
+        manager.startUpdatingLocation();
+        
+        print("hello");
+        
+    }
     
 
     
@@ -62,8 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //also, check for the screen being on
         //if not, the push notification should not send
  
-        
         //TODO
+        //get the current location data and perform the check for a high speed
+        
+        
+        
+        
+        // reschedule the timer
+        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false);
         
         
         

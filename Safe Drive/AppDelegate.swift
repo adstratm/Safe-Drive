@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import CoreFoundation
 import NotificationCenter
+import UserNotifications
 
 
 @UIApplicationMain
@@ -19,37 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     //Add manager for location data
     var manager = CLLocationManager();
+    
+    //add notificaiton center
+    let center = UNUserNotificationCenter.current()
+    
+    
+    
 
     
     var testTimer : Timer? = nil;
     
-    var screenIsLocked = false;
     
+    var numOfLockChanges : Int = 0;
     
-
     /*
-    //function to be called when the display status of the phone changes
-    func displayStatusChanged(center : CFNotificationCenter, observer : Void, name : CFString,
-                              object : Void, userInfo : CFDictionary){
-        
-        var nameCFString = name;
-        var lockState = nameCFString as NSString;
-        
-        print(nameCFString);
-        
-        if(lockState.isEqual("com.apple.springboard.lockcomplete")){
-            //phone has just been locked
-            print("Device Locked");
-            screenIsLocked = true;
-        }
-        else{
-            print("Device Unlocked");
-            screenIsLocked = false;
-        }
-        
-    }*/
-    
-    
     let displayStatusChanged: CFNotificationCallback = { center, observer, name, object, info in
         //works fine
         
@@ -65,6 +49,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         
+    }*/
+    
+    
+    func callbackLock(_ name: NSString){
+        if(name.isEqual("com.apple.springboard.lockcomplete")){
+            print("phone locked");
+        }
+        else{
+            print("phone lock status changed");
+            numOfLockChanges += 1;
+        }
     }
     
     
@@ -82,6 +77,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //request the user for indefinite authorization
         manager.requestAlwaysAuthorization();
         
+        
+        
+        //set up options for notification authorization
+        let options : UNAuthorizationOptions = [.badge, .sound, .alert]
+        
+        //ask for permission
+        center.requestAuthorization (options: options){
+            ( granted, error)in
+            if !granted{
+                print(" something has gone terribly awry!");
+            }
+        }
+        
         //let the manager update in the background.
         manager.allowsBackgroundLocationUpdates = true;
         
@@ -90,12 +98,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
         
         
-        var eventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
+        
+        
+        var lockEventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
+        var unlockEventName : CFString = "com.apple.springboard.lockstate" as CFString;
+        
+        
+        let observer = UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque());
         
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
-            nil, // observer
-            displayStatusChanged, // callback
-            eventName, // event name
+            observer, // observer
+            { (_, observer, name, _, _) -> Void in
+                
+                
+                if let observer = observer, let name = name {
+                    
+                    
+                    //extract pointer to 'self' from void pointer
+                    let mySelf = Unmanaged<AppDelegate>.fromOpaque(observer).takeUnretainedValue();
+                    
+                   
+                    
+                    //call method
+                    mySelf.callbackLock(name.rawValue as! NSString);
+                }
+            }, // callback
+            lockEventName, // event name
+            nil, // object
+            CFNotificationSuspensionBehavior(rawValue: CFIndex(kCFNotificationDeliverImmediately))!);
+        
+        
+        CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
+            observer, // observer
+            { (_, observer, name, _, _) -> Void in
+                
+                
+                if let observer = observer, let name = name {
+                    
+                    
+                    //extract pointer to 'self' from void pointer
+                    let mySelf = Unmanaged<AppDelegate>.fromOpaque(observer).takeUnretainedValue();
+                    
+                    
+                    
+                    //call method
+                    mySelf.callbackLock(name.rawValue as! NSString);
+                }
+            }, // callback
+            unlockEventName, // event name
             nil, // object
             CFNotificationSuspensionBehavior(rawValue: CFIndex(kCFNotificationDeliverImmediately))!);
         
@@ -104,20 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         return true;
     }
-    
-    func lockListener(statusName : NSString){
-        if(statusName.isEqual("com.apple.springboard.lockcomplete")){
-            print("phone locked");
-            screenIsLocked = true;
 
-        }
-        else{
-            print("phone unlocked");
-            screenIsLocked = false;
-        }
-    }
-    
-    
     
     //handles something - we don't know what
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
@@ -146,29 +183,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //also, check for the screen being on
         //if not, the push notification should not send
  
-        //TODO
-        //get the current location data and perform the check for a high speed
-        
         var currentLoc = manager.location;
         var currentSpeed = currentLoc?.speed;
         
         //prints the current speed of the phone to the developer console
         //print(currentSpeed!);
         
-        //if(unlocked && speed > threshold)
-        //alert user
+        //speed is in m/s
+        //convert to km/h
+        var convSpeed = currentSpeed! / 3.6;
         
-        
+        if(convSpeed > 30 && numOfLockChanges % 2 == 0){
+            //finally, we are here!
+            
+            //send a push notification to the user alerting him/her to
+            // stop using the device while driving
+            
+            //TODO - send a push notification with a given text
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Safe Drive"
+            content.body = " Please don't use the phone when driving"
+            
+            content.sound = UNNotificationSound.default();
+            
+            //set trigger
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false);
+            let identifier = " unsafedrivingnotification";
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger);
+            center.add(request, withCompletionHandler: {(error) in
+                if let error = error {
+                    // something has gone terribly awry
+                }
+            })
+            
+            
+        }
         
         
         
         
         // reschedule the timer
         Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false);
-        
-        
-        
-        
         
         
         

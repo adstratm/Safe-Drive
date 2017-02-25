@@ -17,19 +17,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     //Add manager for location data
     var manager = CLLocationManager();
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //set the desired accuracy to maximum
         manager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        //who knows what this does??
         manager.delegate = self;
+        
+        //request the user for indefinite authorization
         manager.requestAlwaysAuthorization();
+        
+        //let the manager update in the background.
         manager.allowsBackgroundLocationUpdates = true;
         
+        manager.startUpdatingLocation();
+        
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
+
         
         
         return true;
+    }
+    
+    
+    
+    //handles the
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
+        //blank
+    }
+    
+    
+    //need a function containing the timer information
+    
+
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //do something with the location data
+        //also, check for the screen being on
+        //if not, the push notification should not send
+ 
+        
+        //TODO
+        
+        
+        
+        
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -40,6 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        manager.startMonitoringSignificantLocationChanges();
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

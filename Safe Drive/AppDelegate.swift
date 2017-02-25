@@ -7,16 +7,29 @@
 //
 
 import UIKit
+import CoreLocation
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    
+    //Add manager for location data
+    var manager = CLLocationManager();
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        return true
+        
+        manager.desiredAccuracy = kCLLocationAccuracyBest;
+        manager.delegate = self;
+        manager.requestAlwaysAuthorization();
+        manager.allowsBackgroundLocationUpdates = true;
+        
+        
+        
+        return true;
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

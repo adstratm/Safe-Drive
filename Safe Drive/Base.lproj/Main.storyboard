@@ -21,8 +21,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Safe-Drive-Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xv0-SQ-QLg">
+                                <rect key="frame" x="16" y="42" width="343" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Distracted-Driving" translatesAutoresizingMaskIntoConstraints="NO" id="ks6-gE-O4Y">
-                                <rect key="frame" x="16" y="42" width="343" height="338"/>
+                                <rect key="frame" x="16" y="178" width="343" height="338"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -92,7 +96,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" image="Car-Tab-Icon" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="About" image="about-icon" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,5 +127,7 @@
         <image name="Distracted-Driving" width="357" height="343"/>
         <image name="HACKISU" width="800" height="325"/>
         <image name="Portrait-of-small-group-of-nerds" width="1300" height="852"/>
+        <image name="Safe-Drive-Logo" width="515" height="134"/>
+        <image name="about-icon" width="30" height="30"/>
     </resources>
 </document>

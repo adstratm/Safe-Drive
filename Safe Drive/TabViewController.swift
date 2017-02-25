@@ -14,7 +14,7 @@ class TabViewController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tabBar.items?[0].title = "Safe Ride";
+        tabBar.items?[0].title = "Safe Drive";
         tabBar.items?[1].title = "About";
     }
 

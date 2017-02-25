@@ -31,25 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var testTimer : Timer? = nil;
     
     
-    var numOfLockChanges : Int = 0;
-    
-    /*
-    let displayStatusChanged: CFNotificationCallback = { center, observer, name, object, info in
-        //works fine
-        
-        var notName = name?.rawValue;
-        var lockState: CFString = notName! as CFString;
-        
-        var state : NSString = lockState as NSString;
-        if(state.isEqual("com.apple.springboard.lockcomplete")){
-            print("phone locked");
-        }
-        else{
-            print("phone unlocked");
-        }
-        
-        
-    }*/
+    var lockChanges = "O";
     
     
     func callbackLock(_ name: NSString){
@@ -58,7 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         else{
             print("phone lock status changed");
-            numOfLockChanges += 1;
+            if(lockChanges == "O"){
+                lockChanges = "X";
+            }
+            else{
+                lockChanges = "O";
+            }
         }
     }
     
@@ -100,8 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         
-        var lockEventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
-        var unlockEventName : CFString = "com.apple.springboard.lockstate" as CFString;
+        let lockEventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
+        let unlockEventName : CFString = "com.apple.springboard.lockstate" as CFString;
         
         
         let observer = UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque());
@@ -120,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                    
                     
                     //call method
-                    mySelf.callbackLock(name.rawValue as! NSString);
+                    mySelf.callbackLock(name.rawValue as NSString);
                 }
             }, // callback
             lockEventName, // event name
@@ -142,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     
                     
                     //call method
-                    mySelf.callbackLock(name.rawValue as! NSString);
+                    mySelf.callbackLock(name.rawValue as NSString);
                 }
             }, // callback
             unlockEventName, // event name
@@ -183,37 +170,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //also, check for the screen being on
         //if not, the push notification should not send
  
-        var currentLoc = manager.location;
-        var currentSpeed = currentLoc?.speed;
+        let currentLoc = manager.location;
+        let currentSpeed = currentLoc?.speed;
         
         //prints the current speed of the phone to the developer console
-        //print(currentSpeed!);
+        print(currentSpeed!);
         
         //speed is in m/s
         //convert to km/h
-        var convSpeed = currentSpeed! / 3.6;
+        let convSpeed = currentSpeed! / 1.0; //change later
         
-        if(convSpeed > 30 && numOfLockChanges % 2 == 0){
+        if(convSpeed > 1 && lockChanges == "O"){
+            
+            print("locks ", lockChanges);
             //finally, we are here!
             
             //send a push notification to the user alerting him/her to
             // stop using the device while driving
             
-            //TODO - send a push notification with a given text
             
             let content = UNMutableNotificationContent()
             content.title = "Safe Drive"
             content.body = " Please don't use the phone when driving"
-            
             content.sound = UNNotificationSound.default();
+            
             
             //set trigger
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false);
-            let identifier = " unsafedrivingnotification";
+            let identifier = "unsafedrivingnotification";
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger);
             center.add(request, withCompletionHandler: {(error) in
-                if let error = error {
+                if error != nil {
                     // something has gone terribly awry
+                    print("notification error");
                 }
             })
             
@@ -240,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         //disable the GPS location to use less battery power
-        manager.startMonitoringSignificantLocationChanges();
+        //manager.startMonitoringSignificantLocationChanges();
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

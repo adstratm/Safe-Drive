@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Distracted-Driving" translatesAutoresizingMaskIntoConstraints="NO" id="ks6-gE-O4Y">
-                                <rect key="frame" x="36" y="20" width="343" height="343"/>
+                                <rect key="frame" x="36" y="20" width="343" height="338"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="343" id="abJ-XG-2Yc"/>
                                     <constraint firstAttribute="width" constant="343" id="mMv-Eb-gVQ"/>
@@ -71,7 +71,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Portrait-of-small-group-of-nerds" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-sk-ozA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_6314" translatesAutoresizingMaskIntoConstraints="NO" id="TB3-sk-ozA">
                                 <rect key="frame" x="68" y="20" width="279" height="269"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="269" id="AtL-Zb-bZs"/>
@@ -213,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="-144"/>
+            <point key="canvasLocation" x="371" y="217"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -239,7 +239,7 @@
         <image name="Car-Tab-Icon" width="30" height="30"/>
         <image name="Distracted-Driving" width="357" height="343"/>
         <image name="HACKISU" width="800" height="325"/>
-        <image name="Portrait-of-small-group-of-nerds" width="1300" height="852"/>
+        <image name="IMG_6314" width="4032" height="3024"/>
         <image name="Safe-Drive-Logo-trans" width="515" height="134"/>
         <image name="about-icon" width="30" height="30"/>
     </resources>

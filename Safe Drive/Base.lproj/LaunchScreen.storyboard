@@ -21,28 +21,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Safe-Drive-Logo-trans" translatesAutoresizingMaskIntoConstraints="NO" id="doJ-Y1-o8C">
-                                <rect key="frame" x="16" y="104" width="343" height="201"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HACKISU" translatesAutoresizingMaskIntoConstraints="NO" id="yNd-Cr-RY8">
-                                <rect key="frame" x="16" y="313" width="343" height="191"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(C) Copyright 2017 JISS-ISU v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-jb-Eho">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(C) Copyright 2017 JISS-ISU v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-jb-Eho">
                                 <rect key="frame" x="61" y="626" width="252" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created At" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3u-Uc-wkm">
+                                <rect key="frame" x="146" y="480" width="82" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="kos-bC-v0G"/>
+                                    <constraint firstAttribute="height" constant="21" id="sZb-ui-mha"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HACKISU" translatesAutoresizingMaskIntoConstraints="NO" id="yNd-Cr-RY8">
+                                <rect key="frame" x="108" y="509" width="158" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="KfI-1y-6EC"/>
+                                    <constraint firstAttribute="height" constant="71" id="QLz-Mz-aQ9"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Safe-Drive-Logo-trans" translatesAutoresizingMaskIntoConstraints="NO" id="doJ-Y1-o8C">
+                                <rect key="frame" x="0.0" y="150" width="375" height="147"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="i3u-Uc-wkm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2hh-hR-ehK"/>
+                            <constraint firstItem="wgT-jb-Eho" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3En-q3-48Z"/>
+                            <constraint firstItem="doJ-Y1-o8C" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-110" id="3M5-7s-g1E"/>
+                            <constraint firstItem="yNd-Cr-RY8" firstAttribute="top" secondItem="i3u-Uc-wkm" secondAttribute="bottom" constant="8" id="8vb-2j-Vr7"/>
+                            <constraint firstItem="yNd-Cr-RY8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Fbp-4H-mc2"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="wgT-jb-Eho" secondAttribute="bottom" constant="20" id="bxR-hO-3dR"/>
+                            <constraint firstItem="doJ-Y1-o8C" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dOk-4D-YxE"/>
+                            <constraint firstAttribute="trailing" secondItem="doJ-Y1-o8C" secondAttribute="trailing" id="g0l-7T-ivi"/>
+                            <constraint firstItem="doJ-Y1-o8C" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gEN-kH-2kc"/>
+                            <constraint firstItem="wgT-jb-Eho" firstAttribute="top" secondItem="yNd-Cr-RY8" secondAttribute="bottom" constant="46" id="msQ-lW-gZw"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="51.5" y="374.5"/>
         </scene>
     </scenes>
     <resources>

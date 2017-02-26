@@ -21,19 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     //Add manager for location data
     var manager = CLLocationManager();
     
-    //add notificaiton center
+    //add notificaiton center - nothing to do with any location
     let center = UNUserNotificationCenter.current()
     
-    
-    
-
-    
+    //create a new timer
     var testTimer : Timer? = nil;
     
-    
+    //initialize to the 'screen on' status
     var lockChanges = "O";
     
     
+    //if the status of the phone lock changes, flip lockChanges
     func callbackLock(_ name: NSString){
         if(name.isEqual("com.apple.springboard.lockcomplete")){
             print("phone locked");
@@ -50,8 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     
-
-
+    //runs on application startup
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -86,13 +83,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         
-        
+        //the two lock events we want to track
         let lockEventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
         let unlockEventName : CFString = "com.apple.springboard.lockstate" as CFString;
         
-        
+        //not clear on what this accomplishes, but it is definitely necessary
         let observer = UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque());
         
+        //add the listener for the phone locking
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
             observer, // observer
             { (_, observer, name, _, _) -> Void in
@@ -115,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             CFNotificationSuspensionBehavior(rawValue: CFIndex(kCFNotificationDeliverImmediately))!);
         
         
+        //add the listener for the lock status changing
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
             observer, // observer
             { (_, observer, name, _, _) -> Void in
@@ -135,9 +134,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             unlockEventName, // event name
             nil, // object
             CFNotificationSuspensionBehavior(rawValue: CFIndex(kCFNotificationDeliverImmediately))!);
-        
-        
-        
         
         return true;
     }
@@ -164,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
 
     
-    
+    //runs anytime there is location data to report - currently every 6 seconds or less
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //do something with the location data
         //also, check for the screen being on
@@ -180,6 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //convert to km/h
         let convSpeed = currentSpeed! / 1.0; //change later
         
+        //generate a local notification if the speed is greater than the threshold, and
         if(convSpeed > 1 && lockChanges == "O"){
             
             print("locks ", lockChanges);
@@ -188,14 +185,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             //send a push notification to the user alerting him/her to
             // stop using the device while driving
             
-            
+            //initialize the push notification
             let content = UNMutableNotificationContent()
             content.title = "Safe Drive"
-            content.body = " Please don't use the phone when driving"
+            content.body = " Please don't use your phone when driving"
             content.sound = UNNotificationSound.default();
             
             
-            //set trigger
+            //set trigger - fire after 1 second
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false);
             let identifier = "unsafedrivingnotification";
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger);
@@ -210,12 +207,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         
-        
-        
-        // reschedule the timer
+        // reschedule the timer - ensures that loction data is collected within 6 seconds - probably more
         Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false);
-        
-        
         
     }
 
@@ -245,4 +238,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
 
-} 
+}

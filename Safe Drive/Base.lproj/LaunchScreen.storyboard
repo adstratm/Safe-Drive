@@ -21,45 +21,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(C) Copyright 2017 JISS-ISU v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-jb-Eho">
-                                <rect key="frame" x="61" y="626" width="252" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe Drive v1.0 - HackISU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-jb-Eho">
+                                <rect key="frame" x="90" y="626" width="196" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created At" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3u-Uc-wkm">
-                                <rect key="frame" x="146" y="480" width="82" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading-image-PNG" translatesAutoresizingMaskIntoConstraints="NO" id="oCY-9t-ryT">
+                                <rect key="frame" x="16" y="146" width="343" height="338"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="82" id="kos-bC-v0G"/>
-                                    <constraint firstAttribute="height" constant="21" id="sZb-ui-mha"/>
+                                    <constraint firstAttribute="width" constant="343" id="0aM-Vu-867"/>
+                                    <constraint firstAttribute="height" constant="338" id="zYm-xZ-FHJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HACKISU" translatesAutoresizingMaskIntoConstraints="NO" id="yNd-Cr-RY8">
-                                <rect key="frame" x="108" y="509" width="158" height="71"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="158" id="KfI-1y-6EC"/>
-                                    <constraint firstAttribute="height" constant="71" id="QLz-Mz-aQ9"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Safe-Drive-Logo-trans" translatesAutoresizingMaskIntoConstraints="NO" id="doJ-Y1-o8C">
-                                <rect key="frame" x="0.0" y="150" width="375" height="147"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="i3u-Uc-wkm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2hh-hR-ehK"/>
+                            <constraint firstItem="oCY-9t-ryT" firstAttribute="centerX" secondItem="wgT-jb-Eho" secondAttribute="centerX" id="0TZ-uf-Pdt"/>
                             <constraint firstItem="wgT-jb-Eho" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3En-q3-48Z"/>
-                            <constraint firstItem="doJ-Y1-o8C" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-110" id="3M5-7s-g1E"/>
-                            <constraint firstItem="yNd-Cr-RY8" firstAttribute="top" secondItem="i3u-Uc-wkm" secondAttribute="bottom" constant="8" id="8vb-2j-Vr7"/>
-                            <constraint firstItem="yNd-Cr-RY8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Fbp-4H-mc2"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="wgT-jb-Eho" secondAttribute="bottom" constant="20" id="bxR-hO-3dR"/>
-                            <constraint firstItem="doJ-Y1-o8C" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dOk-4D-YxE"/>
-                            <constraint firstAttribute="trailing" secondItem="doJ-Y1-o8C" secondAttribute="trailing" id="g0l-7T-ivi"/>
-                            <constraint firstItem="doJ-Y1-o8C" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gEN-kH-2kc"/>
-                            <constraint firstItem="wgT-jb-Eho" firstAttribute="top" secondItem="yNd-Cr-RY8" secondAttribute="bottom" constant="46" id="msQ-lW-gZw"/>
+                            <constraint firstItem="oCY-9t-ryT" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="126" id="mUB-UV-KZQ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -69,7 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="HACKISU" width="800" height="325"/>
-        <image name="Safe-Drive-Logo-trans" width="515" height="134"/>
+        <image name="loading-image-PNG" width="702" height="366"/>
     </resources>
 </document>

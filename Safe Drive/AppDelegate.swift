@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Safe Drive
 //
-//  Created by Andrew Stratmann on 2/24/17.
+//  Created by JISS ISU on 2/24/17 - 2/27/2017 at HackISU
 //  Copyright © 2017 JISS-ISU. All rights reserved.
 //
 
@@ -11,7 +11,6 @@ import CoreLocation
 import CoreFoundation
 import NotificationCenter
 import UserNotifications
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -30,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     //initialize to the 'screen on' status
     var lockChanges = "O";
     
-    
     //if the status of the phone lock changes, flip lockChanges
     func callbackLock(_ name: NSString){
         if(name.isEqual("com.apple.springboard.lockcomplete")){
@@ -47,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
-    
     //runs on application startup
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -60,8 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         //request the user for indefinite authorization
         manager.requestAlwaysAuthorization();
-        
-        
         
         //set up options for notification authorization
         let options : UNAuthorizationOptions = [.badge, .sound, .alert]
@@ -81,8 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
         
-        
-        
         //the two lock events we want to track
         let lockEventName : CFString = "com.apple.springboard.lockcomplete" as CFString;
         let unlockEventName : CFString = "com.apple.springboard.lockstate" as CFString;
@@ -95,14 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             observer, // observer
             { (_, observer, name, _, _) -> Void in
                 
-                
                 if let observer = observer, let name = name {
-                    
                     
                     //extract pointer to 'self' from void pointer
                     let mySelf = Unmanaged<AppDelegate>.fromOpaque(observer).takeUnretainedValue();
-                    
-                   
                     
                     //call method
                     mySelf.callbackLock(name.rawValue as NSString);
@@ -112,20 +101,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             nil, // object
             CFNotificationSuspensionBehavior(rawValue: CFIndex(kCFNotificationDeliverImmediately))!);
         
-        
         //add the listener for the lock status changing
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
             observer, // observer
             { (_, observer, name, _, _) -> Void in
                 
-                
                 if let observer = observer, let name = name {
-                    
                     
                     //extract pointer to 'self' from void pointer
                     let mySelf = Unmanaged<AppDelegate>.fromOpaque(observer).takeUnretainedValue();
-                    
-                    
                     
                     //call method
                     mySelf.callbackLock(name.rawValue as NSString);
@@ -137,13 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         return true;
     }
-
     
     //handles something - we don't know what
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
         //blank
     }
-    
     
     //need a function containing the timer information
     func timerFired(){
@@ -154,12 +136,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         //this line gets the current location
         manager.startUpdatingLocation();
-        
-        
     }
-    
 
-    
     //runs anytime there is location data to report - currently every 6 seconds or less
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //do something with the location data
@@ -191,7 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             content.body = " Please don't use your phone when driving"
             content.sound = UNNotificationSound.default();
             
-            
             //set trigger - fire after 1 second
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false);
             let identifier = "unsafedrivingnotification";
@@ -202,14 +179,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     print("notification error");
                 }
             })
-            
-            
         }
-        
         
         // reschedule the timer - ensures that loction data is collected within 6 seconds - probably more
         Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false);
-        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -236,6 +209,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-
 }

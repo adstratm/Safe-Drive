@@ -1,5 +1,7 @@
 Created at HackISU 2/24/2017 - 2/26/2017
 
+YouTube video showing the app in action: https://www.youtube.com/watch?v=yy8y49q2h90
+
 Inspiration
 
 Team member Minghao Shan was inspired to create an application to discourage phone use while driving upon learning of the devastating loss of life from unsafe driving habits. The other team members saw this as an opportunity to create a first iOS application using the development tools provided by Apple.
